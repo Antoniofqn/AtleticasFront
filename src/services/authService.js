@@ -58,7 +58,10 @@ const validateToken = async () => {
     });
 
     // The response should indicate whether the tokens are valid
-    return response.data.isValid; // Replace 'isValid' with the actual property returned by your API
+    if (response.status === 200) {
+      return true;
+    }
+    return false;
   } catch (error) {
     console.error('Error validating token:', error);
     return false; // Assume the token is invalid if an error occurs
