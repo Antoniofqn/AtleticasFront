@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './navbar';
 import Filter from './universities/filter';
 import './App.css';
+import AuthProvider from './contexts/AuthContext';
+import LoginForm from './components/LoginForm';
 
 const Home = () => (
   <div>
@@ -16,17 +18,20 @@ const Contact = () => <h2>Contact Page</h2>;
 
 const App = () => {
   return (
-    <div>
-      <h1>Welcome to Atletica App</h1>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </Router>
-    </div>
+    <AuthProvider>
+      <div>
+        <h1>Welcome to Atletica App</h1>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<LoginForm />} />
+          </Routes>
+        </Router>
+      </div>
+    </AuthProvider>
   );
 };
 

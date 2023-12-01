@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axiosInstance from '../axiosInstance';
 
 const Filter = () => {
   const [search, setSearch] = useState({
@@ -16,12 +17,18 @@ const Filter = () => {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`https://atleticas-app-684aeedaa084.herokuapp.com/api/v1/universities?university=${search.university}&state=${search.state}&region=${search.region}&category=${search.category}`);
-      const data = await response.json();
-      console.log('API Response:', data);
+      const response = await axiosInstance.get('/api/v1/universities', {
+      params: {
+        university: search.university,
+        state: search.state,
+        region: search.region,
+        category: search.category
+        }
+      });
+      console.log('API Response:', response.data);
 
       // Use Array.isArray(data) ? data : [] para garantir que filter seja sempre uma matriz
-      setFilter(Array.isArray(data) ? data : []);
+      setFilter(Array.isArray(response.data) ? response.data : []);
 
     } catch (error) {
       console.error('Error fetching data:', error);
