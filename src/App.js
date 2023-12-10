@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './navbar';
 import './App.css';
 import AuthProvider from './contexts/AuthContext';
 import LoginForm from './components/LoginForm';
@@ -10,9 +9,8 @@ const App = () => {
   return (
     <AuthProvider>
       <Router>
-        <div>
+        <div className="bg-red-800">
           <h1>Welcome to Atletica App</h1>
-          <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<LoginForm />} />
