@@ -42,12 +42,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Ocupa a altura total da tela */
   margin: 0 auto;
+  padding: 2rem; /* Add some padding for spacing */
+  max-width: 800px; /* Optionally, limit the maximum width */
 }
 
 .filter-title {
-  font-size: 2rem; /* Tamanho da fonte ajustável conforme necessário */
-  text-align: center; /* Centraliza o texto */
-  margin-bottom: 20px; /* Espaço inferior para separar do resto do conteúdo, ajustável conforme necessário */
+  font-size: 2rem; /* Adjustable font size as needed */
+  text-align: center; /* Center the text */
+  margin-bottom: 20px; /* Spacing below the title, adjustable as needed */
 }

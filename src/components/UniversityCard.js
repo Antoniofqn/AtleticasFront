@@ -10,7 +10,7 @@ const UniversityCard = ({ university }) => {
 
   return (
     <div
-      className="max-w-sm rounded overflow-hidden shadow-lg bg-white hover:bg-gray-100 cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl"
+      className="max-w-sm rounded overflow-hidden shadow-lg border-orange-100 border-solid border-2 bg-white hover:bg-orange-100 cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl"
       onClick={toggleExpand}
     >
       <div className="px-6 py-4">
