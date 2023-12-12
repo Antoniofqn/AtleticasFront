@@ -1,17 +1,22 @@
 import React from 'react';
-import UniversitiesList from './UniversitiesList';
+import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Navbar = () => {
   return (
-    <div>
-      <header className="bg-white border-b border-gray-200 py-4 mb-4">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-semibold text-gray-800">Atléticas App</h1>
-        </div>
-      </header>
-      <UniversitiesList />
-    </div>
+    <nav className="bg-orange-700 text-white p-4 flex justify-between items-center">
+      <h1 className="text-3xl font-bold">
+        <Link to="/">Atléticas App</Link>
+      </h1>
+      <ul className="flex space-x-4">
+        <li>
+          <Link to="/" className="hover:text-green-100">Universidades</Link>
+        </li>
+        <li>
+          <Link to="/clubs" className="hover:text-green-100">Atléticas</Link>
+        </li>
+      </ul>
+    </nav>
   );
 };
 
-export default Home;
+export default Navbar;

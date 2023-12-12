@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const UniversityCard = ({ university }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -21,7 +22,7 @@ const UniversityCard = ({ university }) => {
         <div className="px-6 py-4 bg-gray-50">
           <ul className="list-disc list-inside">
             {clubs.map((club, index) => (
-              <li key={index} className="text-gray-700 text-base">{club.name}</li>
+              <Link to={`/clubs/${club.club_hashid}`} className='text-gray-700 text-base'>{club.name}</Link>
             ))}
           </ul>
         </div>

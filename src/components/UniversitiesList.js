@@ -36,7 +36,6 @@ const UniversitiesList = () => {
       }
 
       const response = await axiosInstance.get('/api/v1/universities', { params });
-      console.log(response);
       setUniversities(response.data.data);
       setTotalPages(response.data.meta.total_pages); // Update total pages from response
     } catch (err) {
@@ -70,7 +69,7 @@ const UniversitiesList = () => {
           <UniversityCard key={university.id} university={university} />
         ))}
       </div>
-      <div className="pagination-controls flex justify-center space-x-2 my-4">
+      <div className="pagination-controls flex justify-center space-x-2 my-10">
         {[...Array(totalPages)].map((_, index) => (
           <button
             className={`px-4 py-2 rounded ${index + 1 === currentPage ? 'bg-green-500 text-white' : 'bg-gray-200'}`}

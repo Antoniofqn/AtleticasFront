@@ -17,7 +17,7 @@ const Filter = ({ onFilterChange }) => {
 
   return (
     <div className="filter-container p-4 bg-white shadow rounded-lg border-solid border-2 border-orange-200">
-      <h1 className="text-orange-700 text-2xl font-bold">Filtre por Universidade</h1>
+      <h1 className="text-orange-700 text-2xl font-bold mb-2">Filtre por Universidade</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div>
           <label className="block text-gray-700 text-sm font-bold mb-2">Universidade:</label>
