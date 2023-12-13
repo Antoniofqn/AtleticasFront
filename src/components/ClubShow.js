@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../axiosInstance';
+import ClubAthletes from './ClubAthletes'
 
 const ClubShow = () => {
   const { clubHashid } = useParams();
@@ -45,21 +46,7 @@ const ClubShow = () => {
             <hr className="my-4" />
           </section>
 
-          <section className="bg-white shadow rounded-lg p-6 mb-6">
-            <h2 className="text-2xl font-semibold text-orange-600 mb-4">Atletas</h2>
-            <ul className="list-disc pl-5">
-              {clubData.club_athletes.data.map(athlete => (
-                <li key={athlete.id} className="mb-2 text-gray-700">
-                  <span className="font-bold">{athlete.attributes.name}</span>
-                  <br></br>
-                  <span>{athlete.attributes.achievements}</span>
-                  <br></br>
-                  <span> {athlete.attributes.joined_at.split('-')[0]} - {athlete.attributes.left_at.split('-')[0]}</span>
-                </li>
-              ))}
-            </ul>
-            <hr className="my-4" />
-          </section>
+          <ClubAthletes athletes={clubData?.club_athletes?.data} />
 
           <section className="bg-white shadow rounded-lg p-6">
             <h2 className="text-2xl font-semibold text-orange-600 mb-4">Títulos</h2>
