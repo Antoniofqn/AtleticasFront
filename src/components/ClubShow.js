@@ -2,12 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../axiosInstance';
 import ClubAthletes from './ClubAthletes'
+import ClubHonors from './ClubHonors';
+import ClubContent from './ClubContent';
 
 const ClubShow = () => {
   const { clubHashid } = useParams();
   const [clubData, setClubData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const handleContentUpdated = (newContent) => {
+    setClubData(prevClubData => ({
+      ...prevClubData,
+      club_content: {
+        ...prevClubData.club_content,
+        data: {
+          ...prevClubData.club_content.data,
+          attributes: {
+            ...prevClubData.club_content.data.attributes,
+            content: newContent
+          }
+        }
+      }
+    }));
+  };
+
 
   useEffect(() => {
     const fetchClubData = async () => {
@@ -40,24 +58,13 @@ const ClubShow = () => {
 
       <div className="flex flex-wrap md:flex-nowrap">
         <div className="w-full md:w-3/4 pr-4">
-          <section className="bg-white shadow rounded-lg p-6 mb-6">
-            <h2 className="text-2xl font-semibold text-orange-600 mb-4">Conteúdo</h2>
-            <p className="text-gray-700">{clubData.club_content.data.attributes.content || 'No content available.'}</p>
-            <hr className="my-4" />
-          </section>
-
+        <ClubContent
+          content={clubData?.club_content?.data}
+          clubId={clubHashid}
+          onContentUpdated={handleContentUpdated}
+        />
           <ClubAthletes athletes={clubData?.club_athletes?.data} />
-
-          <section className="bg-white shadow rounded-lg p-6">
-            <h2 className="text-2xl font-semibold text-orange-600 mb-4">Títulos</h2>
-            <ul className="list-disc pl-5">
-              {clubData.club_honors.data.map(honor => (
-                <li key={honor.id} className="mb-2 text-gray-700">
-                  <span className="font-bold">{honor.attributes.title}</span> ({honor.attributes.year}): {honor.attributes.description}
-                </li>
-              ))}
-            </ul>
-          </section>
+          <ClubHonors honors={clubData?.club_honors?.data} />
         </div>
 
         <aside className="w-full md:w-1/4 pt-4 md:pt-0">
