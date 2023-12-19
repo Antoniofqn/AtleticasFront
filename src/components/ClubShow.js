@@ -25,7 +25,66 @@ const ClubShow = () => {
       }
     }));
   };
+  const handleAthleteUpdated = (athleteId, updatedAthlete) => {
+    setClubData(prevClubData => {
+      const updatedAthletes = prevClubData.club_athletes.data.map(athlete => {
+        if (athlete.id === athleteId) {
+          return { ...athlete, attributes: updatedAthlete };
+        }
+        return athlete;
+      });
 
+      return {
+        ...prevClubData,
+        club_athletes: {
+          ...prevClubData.club_athletes,
+          data: updatedAthletes
+        }
+      };
+    });
+  };
+
+  const handleAthleteCreated = (newAthleteData) => {
+    setClubData(prevClubData => {
+      // Use newAthleteData.data to get the athlete's details
+      const newAthlete = {
+        id: newAthleteData.data.id,
+        type: newAthleteData.data.type,
+        attributes: newAthleteData.data.attributes
+      };
+
+      const updatedAthletes = [...prevClubData.club_athletes.data, newAthlete];
+
+      return {
+        ...prevClubData,
+        club_athletes: {
+          ...prevClubData.club_athletes,
+          data: updatedAthletes
+        }
+      };
+    });
+  };
+
+  const handleDeleteClick = async (athleteId) => {
+    if (window.confirm("Tem certeza que gostaria de deletar esse Atleta?")) {
+      try {
+        await axiosInstance.delete(`/api/v1/clubs/${clubHashid}/club_athletes/${athleteId}`);
+        setClubData(prevClubData => {
+          const updatedAthletes = prevClubData.club_athletes.data.filter(athlete => athlete.id !== athleteId);
+          return {
+            ...prevClubData,
+            club_athletes: {
+              ...prevClubData.club_athletes,
+              data: updatedAthletes
+            }
+          };
+        });
+      } catch (error) {
+        alert("Erro ao deletar Atleta");
+        console.error('Error deleting athlete:', error);
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchClubData = async () => {
@@ -63,7 +122,13 @@ const ClubShow = () => {
           clubId={clubHashid}
           onContentUpdated={handleContentUpdated}
         />
-          <ClubAthletes athletes={clubData?.club_athletes?.data} />
+          <ClubAthletes
+            athletes={clubData?.club_athletes?.data}
+            clubId={clubHashid}
+            onAthleteUpdated={handleAthleteUpdated}
+            onAthleteCreated={handleAthleteCreated}
+            onAthleteDeleted={handleDeleteClick}
+          />
           <ClubHonors honors={clubData?.club_honors?.data} />
         </div>
 

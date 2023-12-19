@@ -47,7 +47,7 @@ const ClubContent = ({ content, clubId, onContentUpdated }) => {
             onChange={handleContentChange}
           />
           <button onClick={handleContentSave} className="mt-2 px-4 py-2 bg-green-500 text-white rounded">
-            Save
+            Salvar
           </button>
         </div>
       ) : (
