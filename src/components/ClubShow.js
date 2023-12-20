@@ -1,15 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { FaPencilAlt } from 'react-icons/fa';
 import axiosInstance from '../axiosInstance';
 import ClubAthletes from './ClubAthletes'
 import ClubHonors from './ClubHonors';
 import ClubContent from './ClubContent';
+import EditClubModal from './EditClubModal';
 
 const ClubShow = () => {
   const { clubHashid } = useParams();
   const [clubData, setClubData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [editingClub, setEditingClub] = useState(false);
+  const openEditModal = () => setEditingClub(true);
+  const closeEditModal = () => setEditingClub(false);
+
+  const handleClubUpdated = (updatedClubData) => {
+    setClubData(prevClubData => {
+      return {
+        ...prevClubData,
+        // Assuming updatedClubData contains the updated club object
+        ...updatedClubData.data.attributes
+      };
+    });
+  };
+
   const handleContentUpdated = (newContent) => {
     setClubData(prevClubData => ({
       ...prevClubData,
@@ -170,11 +186,22 @@ const ClubShow = () => {
 
         <aside className="w-full md:w-1/4 pt-4 md:pt-0">
           <div className="bg-white shadow rounded-lg p-6 sticky top-4">
+          <div className="flex justify-between items-center">
             <h2 className="text-xl font-semibold mb-4">{clubData.name}</h2>
+            <FaPencilAlt onClick={openEditModal} className="cursor-pointer" />
+          </div>
             <p><strong>Fundado em:</strong> {clubData.year_of_foundation || ''}</p>
             <p><strong>Resumo:</strong> {clubData.description || ''}</p>
             <p><strong>Universidade:</strong> {clubData.university.name}</p>
           </div>
+          {editingClub && (
+            <EditClubModal
+              clubId={clubHashid}
+              clubData={clubData}
+              onClose={closeEditModal}
+              onClubUpdated={handleClubUpdated}
+            />
+          )}
         </aside>
       </div>
     </div>
