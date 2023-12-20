@@ -46,7 +46,7 @@ const ClubAthletes = ({ athletes, clubId, onAthleteUpdated, onAthleteCreated, on
             </div>
             <FaTimes
               onClick={() => onAthleteDeleted(athlete.id)}
-              className="absolute top-1 right-1 cursor-pointer text-red-500 hover:text-red-700"
+              className="absolute top-1 right-1 cursor-pointer text-red-500 hover:text-red-700 text-sm"
             />
           </li>
         ))}

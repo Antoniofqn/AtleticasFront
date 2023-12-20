@@ -86,6 +86,38 @@ const ClubShow = () => {
     }
   };
 
+  const handleHonorCreated = (newHonorData) => {
+    setClubData(prevClubData => {
+      const newHonor = {
+        id: newHonorData.data.id,
+        type: newHonorData.data.type,
+        attributes: newHonorData.data.attributes
+      };
+      const updatedHonors = [...prevClubData.club_honors.data, newHonor];
+      return {
+        ...prevClubData,
+        club_honors: {
+          ...prevClubData.club_honors,
+          data: updatedHonors
+        }
+      };
+    });
+  };
+
+  const handleHonorDeleted = (deletedHonorId) => {
+    setClubData(prevClubData => {
+      const updatedHonors = prevClubData.club_honors.data.filter(honor => honor.id !== deletedHonorId);
+      return {
+        ...prevClubData,
+        club_honors: {
+          ...prevClubData.club_honors,
+          data: updatedHonors
+        }
+      };
+    });
+  };
+
+
   useEffect(() => {
     const fetchClubData = async () => {
       try {
@@ -129,7 +161,11 @@ const ClubShow = () => {
             onAthleteCreated={handleAthleteCreated}
             onAthleteDeleted={handleDeleteClick}
           />
-          <ClubHonors honors={clubData?.club_honors?.data} />
+          <ClubHonors
+            honors={clubData?.club_honors?.data}
+            clubId={clubHashid}
+            onHonorCreated={handleHonorCreated}
+            onHonorDeleted={handleHonorDeleted} />
         </div>
 
         <aside className="w-full md:w-1/4 pt-4 md:pt-0">
