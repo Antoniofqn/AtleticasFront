@@ -32,7 +32,7 @@ const CreateUniversity = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="max-w-md mx-auto bg-gray-100 rounded-lg shadow p-6">
-        <h3 className="text-xl font-bold text-green-500 mb-4">Criar Universidade</h3>
+        <h3 className="text-xl font-bold text-green-700 mb-4">Criar Universidade</h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="name" className="block text-sm font-bold text-orange-700">Nome:</label>

@@ -64,22 +64,22 @@ const CreateClub = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="max-w-md mx-auto bg-gray-100 rounded-lg shadow p-6">
-        <h3 className="text-xl font-bold text-green-500 mb-4">Criar Atlética</h3>
+        <h3 className="text-xl font-bold text-green-700 mb-4">Criar Atlética</h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-bold text-gray-700">Nome:</label>
+            <label className="block text-sm font-bold text-orange-700">Nome:</label>
             <input type="text" name="name" value={clubData.name} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded" />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-bold text-gray-700">Descrição:</label>
+            <label className="block text-sm font-bold text-orange-700">Descrição:</label>
             <textarea name="description" value={clubData.description} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded"></textarea>
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-bold text-gray-700">Ano de Fundação:</label>
+            <label className="block text-sm font-bold text-orange-700">Ano de Fundação:</label>
             <input type="number" name="year_of_foundation" value={clubData.year_of_foundation} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded" />
           </div>
           <div className="mb-4 relative">
-            <label className="block text-sm font-bold text-gray-700">Universidade:</label>
+            <label className="block text-sm font-bold text-orange-700">Universidade:</label>
             <input type="text" name="university_search" value={clubData.university_search} onChange={handleUniversitySearchChange} className="w-full p-2 border border-gray-300 rounded" />
             {showDropdown && (
               <div className="absolute z-10 bg-white border border-gray-300 rounded w-full mt-1">
@@ -91,7 +91,7 @@ const CreateClub = () => {
               </div>
             )}
           </div>
-          <button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Criar</button>
+          <button type="submit" className="w-full bg-orange-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Criar</button>
         </form>
       </div>
     </div>

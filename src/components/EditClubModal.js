@@ -32,7 +32,7 @@ const EditClubModal = ({ clubData, clubId, onClose, onClubUpdated }) => {
             <span>&times;</span>
           </button>
           <form onSubmit={handleSubmit} className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8">
-            <h3 className="pt-5 text-xl font-bold text-green-500">Editar Atlética</h3>
+            <h3 className="pt-5 text-xl font-bold text-green-700">Editar Atlética</h3>
             <div>
               <label htmlFor="name" className="block mb-2 text-sm font-bold text-gray-700">Nome:</label>
               <input type="text" name="name" value={editedClub.name} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded" />

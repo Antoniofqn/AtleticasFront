@@ -41,7 +41,7 @@ const CreateAthleteModal = ({ clubId, onClose, onAthleteCreated }) => {
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 112.414 1.414L12.414 10l2.293 2.293a1 1 0 01-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
           </button>
           <form onSubmit={handleSubmit} className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8">
-            <h3 className="pt-4 text-xl font-bold text-green-500">Criar Novo Atleta</h3>
+            <h3 className="pt-4 text-xl font-bold text-green-700">Criar Novo Atleta</h3>
             <div>
               <label className="block mb-2 text-sm font-bold text-orange-500">Nome:</label>
               <input type="text" name="name" value={newAthlete.name} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />

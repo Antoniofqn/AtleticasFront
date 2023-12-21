@@ -16,13 +16,15 @@ const UniversityCard = ({ university }) => {
     >
       <div className="px-6 py-4">
         <div className="font-bold text-xl text-green-600 mb-2">{abbreviation}</div>
-        <p className="text-gray-700 text-base">{name}</p>
+        <p className="text-orange-700 text-base">{name}</p>
       </div>
       {isExpanded && (
-        <div className="px-6 py-4 bg-gray-50">
+        <div className="px-6 py-4 bg-gray-50 border-t-2 border-orange-500">
           <ul className="list-disc list-inside">
             {clubs.map((club, index) => (
-              <Link to={`/clubs/${club.club_hashid}`} className='text-gray-700 text-base'>{club.name}</Link>
+              <li key={index} className="text-green-700 text-base mb-1"> {/* Add li tag */}
+                <Link to={`/clubs/${club.club_hashid}`}>{club.name}</Link>
+              </li>
             ))}
           </ul>
         </div>
