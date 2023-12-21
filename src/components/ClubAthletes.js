@@ -23,10 +23,6 @@ const ClubAthletes = ({ athletes, clubId, onAthleteUpdated, onAthleteCreated, on
     setCreatingAthlete(false);
   };
 
-  if (!athletes || athletes.length === 0) {
-    return <p className="text-center">Lista vazia</p>;
-  }
-
   return (
     <div className="bg-white shadow rounded-lg p-6 mb-6">
       <div className="flex justify-between items-center">

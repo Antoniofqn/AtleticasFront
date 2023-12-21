@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BRAZILIAN_STATES, BRAZILIAN_REGIONS } from '../constants';
+import { useNavigate } from 'react-router-dom';
 
 const Filter = ({ onFilterChange, initialFilter }) => {
   const [search, setSearch] = useState(initialFilter);
