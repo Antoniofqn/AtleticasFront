@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { BRAZILIAN_STATES, BRAZILIAN_REGIONS } from '../constants';
 
-const Filter = ({ onFilterChange }) => {
-  const [search, setSearch] = useState({
-    university: '',
-    state: '',
-    region: '',
-    category: '',
-  });
+const Filter = ({ onFilterChange, initialFilter }) => {
+  const [search, setSearch] = useState(initialFilter);
 
   const handleInputChange = (event) => {
     const newSearch = { ...search, [event.target.name]: event.target.value };

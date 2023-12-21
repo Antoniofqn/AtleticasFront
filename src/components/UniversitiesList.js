@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import UniversityCard from './UniversityCard';
 import Filter from './filter';
 import axiosInstance from '../axiosInstance';
@@ -7,12 +8,14 @@ const UniversitiesList = () => {
   const [universities, setUniversities] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [filter, setFilter] = useState({
+  const [searchParams] = useSearchParams();
+  const initialFilter = {
     university: '',
-    state: '',
+    state: searchParams.get('state') || '', // Use the state from URL if available
     region: '',
     category: '',
-  });
+  };
+  const [filter, setFilter] = useState(initialFilter);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const perPage = 20; // Number of records per page
@@ -61,13 +64,15 @@ const UniversitiesList = () => {
 
   return (
     <div className="container mx-auto px-4">
-      <Filter onFilterChange={handleFilterChange} />
+      <Filter onFilterChange={handleFilterChange} initialFilter={filter} />
       {loading && <p className="text-center text-blue-600">Carregando...</p>}
       {error && <p className="text-center text-red-500">{error}</p>}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
-        {!loading && !error && universities.map(university => (
-          <UniversityCard key={university.id} university={university} />
-        ))}
+      <div className="flex justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
+          {!loading && !error && universities.map(university => (
+            <UniversityCard key={university.id} university={university} />
+          ))}
+        </div>
       </div>
       <div className="pagination-controls flex justify-center space-x-2 my-10">
         {[...Array(totalPages)].map((_, index) => (

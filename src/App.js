@@ -7,6 +7,7 @@ import Home from './components/Home';
 import ClubShow from './components/ClubShow';
 import Navbar from './components/Navbar';
 import ClubIndex from './components/ClubIndex';
+import CreateUniversity from './components/CreateUniversity';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/clubs/:clubHashid" element={<ClubShow />} />
             <Route path="/clubs" element={<ClubIndex/>} />
+            <Route path="/universities/create" element={<CreateUniversity />} />
           </Routes>
         </div>
       </Router>
